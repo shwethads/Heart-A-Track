@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.heart_a_track"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.example.heart_a_track.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.heart_a_track.SignupActivity"
+            android:label="@string/title_activity_signup" >
+        </activity>
+        <activity
+            android:name="com.example.heart_a_track.ForgotPassActivity"
+            android:label="@string/title_activity_forgot_pass" >
+        </activity>
+        <activity
+            android:name="com.example.heart_a_track.HomeActivity"
+            android:label="@string/title_activity_home" >
+        </activity>
+        <activity
+            android:name="com.example.heart_a_track.RateResultActivity"
+            android:label="@string/title_activity_rate_result" >
+        </activity>
+        <activity
+            android:name="com.example.heart_a_track.ScheduleActivity"
+            android:label="@string/title_activity_schedule" >
+        </activity>
+    </application>
+
+</manifest>

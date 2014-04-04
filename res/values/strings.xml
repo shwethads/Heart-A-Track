@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Heart-A-Track</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="signin">PLEASE SIGNIN</string>
+    <string name="username">Username:</string>
+    <string name="password">Password</string>
+    <string name="new_user">New User Signup</string>
+    <string name="forgot_pwd">Forgot Password</string>
+    <string name="ok">OK</string>
+    <string name="title_activity_signup">SignupActivity</string>
+    <string name="signup_title">NEW USER SIGNUP</string>
+    <string name="first_name">First Name:</string>
+    <string name="last_name">Last Name:</string>
+    <string name="email">Email (Username):</string>
+    <string name="title_activity_forgot_pass">ForgotPassActivity</string>
+    <string name="pwd_title">FORGOT PASSWORD</string>
+    <string name="pwd_text">An email will be sent to you with your password</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="home_title">HOME</string>
+    <string name="home_opn_check_rate">Check Heart Rate</string>
+    <string name="home_opn_schedule">Exercise Schedule / Reminders</string>
+    <string name="home_opn_trend">Exercise Trend</string>
+    <string name="home_opn_account">View account details</string>
+    <string name="title_activity_rate_result">RateResultActivity</string>
+    <string name="result_title">RESULT</string>
+    <string name="result_reco">RECOMMENDATIONS</string>
+    <string name="title_activity_schedule">ScheduleActivity</string>
+	<string name="schedule_title">SCHEDULE</string>
+	<string name="schedule_new">+new</string>
+	<string name="schedule_del">-delete</string>
+	
+</resources>
