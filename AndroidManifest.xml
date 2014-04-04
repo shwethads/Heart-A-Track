@@ -42,6 +42,26 @@
             android:name="com.example.heart_a_track.ScheduleActivity"
             android:label="@string/title_activity_schedule" >
         </activity>
+        <activity
+            android:name="com.example.heart_a_track.AddItemActivity"
+            android:label="@string/title_activity_add_item" >
+        </activity>
+        <activity
+            android:name="com.example.heart_a_track.DeleteItemActivity"
+            android:label="@string/title_activity_delete_item" >
+        </activity>
+        <activity
+            android:name="com.example.heart_a_track.ViewEventActivity"
+            android:label="@string/title_activity_view_event" >
+        </activity>
+        <activity
+            android:name="com.example.heart_a_track.EditItemActivity"
+            android:label="@string/title_activity_edit_item" >
+        </activity>
+        <activity
+            android:name="com.example.heart_a_track.ChangePassActivity"
+            android:label="@string/title_activity_change_pass" >
+        </activity>
     </application>
 
 </manifest>

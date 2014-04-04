@@ -7,6 +7,8 @@
 
 package com.example.heart_a_track;
 
+import android.view.View;
+
 public final class R {
     public static final class anim {
         public static final int abc_fade_in=0x7f040000;
