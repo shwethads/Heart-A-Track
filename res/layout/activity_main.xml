@@ -61,6 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        android:autoLink="web"
         android:text="@string/forgot_pwd"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 

@@ -28,8 +28,15 @@
     <string name="result_title">RESULT</string>
     <string name="result_reco">RECOMMENDATIONS</string>
     <string name="title_activity_schedule">ScheduleActivity</string>
-	<string name="schedule_title">SCHEDULE</string>
-	<string name="schedule_new">+new</string>
-	<string name="schedule_del">-delete</string>
-	
+    <string name="schedule_title">SCHEDULE</string>
+    <string name="schedule_new">+new</string>
+    <string name="schedule_del">-delete</string>
+    <string name="title_activity_rate_trend">RateTrendActivity</string>
+    <string name="title_activity_new_schedule">NewScheduleActivity</string>
+    <string name="title_activity_delete_schedule">DeleteScheduleActivity</string>
+    <string name="sch_title">NEW SCHEDULE ITEM</string>
+    <string name="sch_name">Name:</string>
+    <string name="sch_time">Time:</string>
+    <string name="title_activity_camera">CameraActivity</string>
+
 </resources>

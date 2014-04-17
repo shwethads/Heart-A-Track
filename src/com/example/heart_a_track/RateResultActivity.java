@@ -28,7 +28,7 @@ public class RateResultActivity extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.rate_result, menu);
+		getMenuInflater().inflate(R.menu.fragment_rate_result, menu);
 		return true;
 	}
 

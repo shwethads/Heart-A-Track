@@ -3,5 +3,5 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.heart_a_track.ScheduleActivity"
+    tools:context="com.example.heart_a_track.DeleteScheduleActivity"
     tools:ignore="MergeRootFrame" />
