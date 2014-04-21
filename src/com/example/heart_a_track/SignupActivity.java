@@ -1,22 +1,56 @@
 package com.example.heart_a_track;
 
+import util.Util;
+import DBLayout.DatabaseHandler;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class SignupActivity extends ActionBarActivity {
-
+	Util util = new Util();
+	DatabaseHandler db = new DatabaseHandler(this);
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_signup);
+		
+		Button okBtn = (Button) findViewById(R.id.button1);
+		okBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				EditText uname = (EditText) findViewById(R.id.editText1);
+				EditText pass = (EditText) findViewById(R.id.editText2);
+				
+				String username = uname.getText().toString();
+				String pwd = pass.getText().toString();
+				
+				if(username.equalsIgnoreCase("") || pwd.equalsIgnoreCase("")) {
+					Toast.makeText(getApplicationContext(), "Please enter values", 
+							   Toast.LENGTH_LONG).show();
+				}
+				else {
+					if(util.checkUname(db, username)) {
+						Toast.makeText(getApplicationContext(), "User exixts", 
+								   Toast.LENGTH_LONG).show();
+					}
+					else {
+						db.addUser(username, pwd);
+					}
+				}
+				
+			}
+		});
 
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()

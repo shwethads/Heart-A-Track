@@ -1,5 +1,10 @@
 package com.example.heart_a_track;
 
+import java.util.ArrayList;
+
+import util.Util;
+import entities.User;
+import DBLayout.DatabaseHandler;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -12,11 +17,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
-
+	DatabaseHandler db = new DatabaseHandler(this);
+	Util util = new Util();
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,28 +41,43 @@ public class MainActivity extends ActionBarActivity {
 		});
         
         TextView tvSignup = (TextView) findViewById(R.id.textView5);
-        tvSignup.setOnClickListener(new OnClickListener() {
-			
+        tvSignup.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(MainActivity.this, SignupActivity.class);
 				startActivity(intent);
 			}
 		});
+        
+        
         Button okBtn = (Button) findViewById(R.id.button1);
-        okBtn.setOnClickListener(new OnClickListener() {
-			
+        okBtn.setOnClickListener(new OnClickListener() {		
 			@Override
 			public void onClick(View v) {
+				EditText username = (EditText) findViewById(R.id.editText1);
+		        EditText pwd = (EditText) findViewById(R.id.editText2);		        
+		        String uname = username.getText().toString();
+		        String pass = pwd.getText().toString();
+		        System.out.println(uname);
+		        
 				// check if input values are empty
+				if(uname.equals("") || pass.equals("")) {
+					Toast.makeText(getApplicationContext(), "Please enter values", 
+							   Toast.LENGTH_LONG).show();
+				}
+				
 				
 				//Check if input values are correct
-				
-				//If input is correct
-				Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-				//set user identifier
-				startActivity(intent);
-				
+				if(util.checkCredentials(db, uname, pass)){
+					//If input is correct
+					Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+					//set user identifier
+					startActivity(intent);
+				}
+				else {
+					Toast.makeText(getApplicationContext(), "Incorrect unsername/password", 
+							   Toast.LENGTH_LONG).show();
+				}			
 			}
 		});
 
