@@ -1,5 +1,6 @@
 package com.example.heart_a_track;
 
+import android.R;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
