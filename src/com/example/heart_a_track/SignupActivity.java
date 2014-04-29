@@ -4,6 +4,7 @@ import util.Util;
 import DBLayout.DatabaseHandler;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -41,12 +42,18 @@ public class SignupActivity extends ActionBarActivity {
 				}
 				else {
 					if(util.checkUname(db, username)) {
-						Toast.makeText(getApplicationContext(), "User exixts", 
+						Toast.makeText(getApplicationContext(), "User exists", 
 								   Toast.LENGTH_LONG).show();
 					}
 					else {
 						db.addUser(username, pwd);
+						Toast.makeText(getApplicationContext(), "User added", 
+								   Toast.LENGTH_LONG).show();
+						
+						Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+						startActivity(intent);
 					}
+					
 				}
 				
 			}
