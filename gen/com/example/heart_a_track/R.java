@@ -995,7 +995,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f050049;
+        public static final int action_settings=0x7f050050;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
@@ -1012,6 +1012,8 @@ containing a value of this type.
         public static final int editText1=0x7f05003f;
         public static final int editText2=0x7f050044;
         public static final int edit_query=0x7f050030;
+        public static final int edittext1=0x7f050048;
+        public static final int edittext2=0x7f050049;
         public static final int end=0x7f050013;
         public static final int expand_activities_button=0x7f050026;
         public static final int expanded_menu=0x7f05002c;
@@ -1020,14 +1022,16 @@ containing a value of this type.
         public static final int icon=0x7f05002a;
         public static final int ifRoom=0x7f05000a;
         public static final int image=0x7f050027;
-        public static final int imageView1=0x7f050048;
+        public static final int imageView1=0x7f05004c;
+        public static final int linearLayout1=0x7f050047;
         public static final int listMode=0x7f050001;
-        public static final int listView1=0x7f050047;
         public static final int list_item=0x7f050029;
+        public static final int listview=0x7f05004b;
         public static final int middle=0x7f050012;
         public static final int never=0x7f050009;
         public static final int none=0x7f050010;
         public static final int normal=0x7f050000;
+        public static final int okButton=0x7f05004a;
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
         public static final int radio=0x7f05002f;
@@ -1055,6 +1059,9 @@ containing a value of this type.
         public static final int textView5=0x7f050045;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
+        public static final int txt_date=0x7f05004e;
+        public static final int txt_description=0x7f05004f;
+        public static final int txt_id=0x7f05004d;
         public static final int up=0x7f050021;
         public static final int useLogo=0x7f050003;
         public static final int withText=0x7f05000c;
@@ -1128,7 +1135,8 @@ containing a value of this type.
         public static final int fragment_rate_trend=0x7f030028;
         public static final int fragment_schedule=0x7f030029;
         public static final int fragment_signup=0x7f03002a;
-        public static final int support_simple_spinner_dropdown_item=0x7f03002b;
+        public static final int listcell=0x7f03002b;
+        public static final int support_simple_spinner_dropdown_item=0x7f03002c;
     }
     public static final class menu {
         public static final int camera=0x7f0c0000;
@@ -1195,6 +1203,7 @@ containing a value of this type.
         public static final int home_opn_trend=0x7f0a0022;
         public static final int home_title=0x7f0a001f;
         public static final int last_name=0x7f0a0019;
+        public static final int new_schedule_title=0x7f0a0032;
         public static final int new_user=0x7f0a0013;
         public static final int ok=0x7f0a0015;
         public static final int password=0x7f0a0012;

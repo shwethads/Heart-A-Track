@@ -1,91 +1,156 @@
 package com.example.heart_a_track;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
+import java.util.ArrayList;
+
+import util.DisplayAdapter;
+
+import DBLayout.DatabaseHandler;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.os.Build;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.ListView;
+import android.widget.Toast;
+/**
+ * activity to display all schedule records from SQLite database
 
-public class ScheduleActivity extends ActionBarActivity {
+ */
+public class ScheduleActivity extends Activity {
+
+	private DatabaseHandler mHelper;
+	private SQLiteDatabase dataBase;
+
+	private ArrayList<String> sID = new ArrayList<String>();
+	private ArrayList<String> date = new ArrayList<String>();
+	private ArrayList<String> description = new ArrayList<String>();
+
+	private ListView userList;
+	private AlertDialog.Builder build;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_schedule);
-		
-		Button newBtn = (Button) findViewById(R.id.button1);
-		Button delBtn = (Button) findViewById(R.id.button2);
-		
-		newBtn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(ScheduleActivity.this, NewScheduleActivity.class);
-				//Set user token
-				startActivity(intent);
-				
-			}
-		});
 
-		delBtn.setOnClickListener(new OnClickListener() {
-			
-			@Override
+		userList = (ListView) findViewById(R.id.listview);
+
+		mHelper = new DatabaseHandler(this);
+		
+		//add new record
+		findViewById(R.id.button1).setOnClickListener(new OnClickListener() {
+
 			public void onClick(View v) {
-				Intent intent = new Intent();
-				//Set user ID
-				startActivity(intent);
-				
+
+				Intent i = new Intent(getApplicationContext(),
+						NewScheduleActivity.class);
+				i.putExtra("update", false);
+				startActivity(i);
+
 			}
 		});
-		if (savedInstanceState == null) {
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
+		
+		//click to update data
+		userList.setOnItemClickListener(new OnItemClickListener() {
+
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+
+				Intent i = new Intent(getApplicationContext(),
+						NewScheduleActivity.class);
+				i.putExtra("date", date.get(arg2));
+				i.putExtra("description", description.get(arg2));
+				i.putExtra("ID", sID.get(arg2));
+				i.putExtra("update", true);
+				startActivity(i);
+
+			}
+		});
+		
+		//long click to delete data
+		userList.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+					final int arg2, long arg3) {
+
+				build = new AlertDialog.Builder(ScheduleActivity.this);
+				build.setTitle("Delete " + date.get(arg2) + " "
+						+ description.get(arg2));
+				build.setMessage("Do you want to delete ?");
+				build.setPositiveButton("Yes",
+						new DialogInterface.OnClickListener() {
+
+							public void onClick(DialogInterface dialog,
+									int which) {
+
+								Toast.makeText(
+										getApplicationContext(),
+										date.get(arg2) + " "
+												+ description.get(arg2)
+												+ " is deleted.", 3000).show();
+
+								dataBase.delete(
+										DatabaseHandler.TABLE3,
+										DatabaseHandler.KEY_ID + "="
+												+ sID.get(arg2), null);
+								displayData();
+								dialog.cancel();
+							}
+						});
+
+				build.setNegativeButton("No",
+						new DialogInterface.OnClickListener() {
+
+							public void onClick(DialogInterface dialog,
+									int which) {
+								dialog.cancel();
+							}
+						});
+				AlertDialog alert = build.create();
+				alert.show();
+
+				return true;
+			}
+		});
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.schedule, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
+	protected void onResume() {
+		displayData();
+		super.onResume();
 	}
 
 	/**
-	 * A placeholder fragment containing a simple view.
+	 * displays data from SQLite
 	 */
-	public static class PlaceholderFragment extends Fragment {
+	private void displayData() {
+		dataBase = mHelper.getWritableDatabase();
+		Cursor mCursor = dataBase.rawQuery("SELECT * FROM "
+				+ DatabaseHandler.TABLE3, null);
 
-		public PlaceholderFragment() {
-		}
+		sID.clear();
+		date.clear();
+		description.clear();
+		if (mCursor.moveToFirst()) {
+			do {
+				sID.add(mCursor.getString(mCursor.getColumnIndex(DatabaseHandler.KEY_ID)));
+				date.add(mCursor.getString(mCursor.getColumnIndex(DatabaseHandler.KEY_DATE)));
+				description.add(mCursor.getString(mCursor.getColumnIndex(DatabaseHandler.KEY_DESCRIPTION)));
 
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_schedule,
-					container, false);
-			return rootView;
+			} while (mCursor.moveToNext());
 		}
+		DisplayAdapter disadpt = new DisplayAdapter(ScheduleActivity.this,sID, date, description);
+		userList.setAdapter(disadpt);
+		mCursor.close();
 	}
+
+	
 
 }

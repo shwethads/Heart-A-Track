@@ -38,5 +38,6 @@
     <string name="sch_name">Name:</string>
     <string name="sch_time">Time:</string>
     <string name="title_activity_camera">CameraActivity</string>
+    <string name="new_schedule_title">NEW SCHEDULE</string>
 
 </resources>

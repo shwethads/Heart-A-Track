@@ -14,14 +14,18 @@ import entities.User;
 public class DatabaseHandler extends SQLiteOpenHelper{
 	
 	private static final int DATABASE_VERSION = 1;
-	private static final String DATABASE_NAME = "heartATrack";
+	private static final String DATABASE_NAME = "heartATrack2";
 	private static final String TABLE1 = "users";
 	private static final String TABLE2 = "heartRate";
+	public static final String TABLE3 = "schedule"; 
 
-	private static final String KEY_USERNAME = "username";
+	public static final String KEY_USERNAME = "username";
 	private static final String KEY_PASSWORD = "password";
-	private static final String KEY_DATE = "date";
+	public static final String KEY_DATE = "date";
 	private static final String KEY_HEARTRATE = "heartrate";
+	//schedule event id and description 
+	public static final String KEY_ID = "id";
+	public static final String KEY_DESCRIPTION = "description";
 	
 	public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);      
@@ -35,8 +39,13 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		String CREATE_TABLE2 = ("CREATE TABLE IF NOT EXISTS "+TABLE2+"("+KEY_USERNAME+
 				" STRING PRIMARY KEY,"+KEY_PASSWORD+" STRING,"+KEY_DATE+" DATE,"+
 				KEY_HEARTRATE+" DOUBLE"+")");
+		String CREATE_TABLE3 = "CREATE TABLE IF NOT EXISTS "+TABLE3+"("+KEY_ID+
+				" INTEGER PRIMARY KEY,"+KEY_DATE+" TEXT,"+
+				KEY_DESCRIPTION+" TEXT"+")";
+		
 		db.execSQL(CREATE_TABLE1);
 		db.execSQL(CREATE_TABLE2);		
+		db.execSQL(CREATE_TABLE3);
 	}
 
 	@Override
@@ -44,6 +53,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		System.out.println("DBH onUpgrade..........");
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE1);
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE2);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE3);
 		onCreate(db);
 	}
 	
