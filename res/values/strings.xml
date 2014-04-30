@@ -39,5 +39,8 @@
     <string name="sch_time">Time:</string>
     <string name="title_activity_camera">CameraActivity</string>
     <string name="new_schedule_title">NEW SCHEDULE</string>
+    <string name="title_activity_check_rate">CheckRateActivity</string>
+    <string name="rate_title">Heart Rate</string>
+    <string name="rate_check_btn">Check heart rate</string>
 
 </resources>

@@ -1,13 +1,10 @@
 package com.example.heart_a_track;
 
-import java.util.ArrayList;
-
 import util.Util;
-import entities.User;
 import DBLayout.DatabaseHandler;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.text.method.LinkMovementMethod;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,7 +17,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
 	DatabaseHandler db = new DatabaseHandler(this);

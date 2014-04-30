@@ -32,8 +32,8 @@ public class HomeActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				// Open camera, capture pic and image analysis
-				 
-				
+				Intent intent = new Intent(HomeActivity.this, CheckRateActivity.class);
+				startActivity(intent);
 			}
 		});
 
