@@ -27,7 +27,7 @@ public class ForgotPassActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forgot_pass);
 
-		final EditText unameET = (EditText) findViewById(R.id.edittext1);
+		final EditText unameET = (EditText) findViewById(R.id.editText1);
 		final TextView tvRes = (TextView) findViewById(R.id.textView3);
 		Button okBtn = (Button) findViewById(R.id.button1);		
 		
@@ -45,8 +45,14 @@ public class ForgotPassActivity extends ActionBarActivity {
 						throw new MyException(getApplicationContext(), "Enter username");
 					}
 					else {
-						pass = db.forgotPass(uname);
-						tvRes.setText("Password: "+pass);
+						if(util.checkUname(db, uname)) {
+							pass = db.forgotPass(uname);
+							tvRes.setText("Password for "+ uname+": "+pass);
+						}else {
+							tvRes.setText(null);
+								throw new MyException(getApplicationContext(), "No such users");
+						}
+						
 					}
 				} catch(MyException e) {
 					e.printStackTrace();
