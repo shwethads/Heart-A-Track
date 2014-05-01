@@ -94,7 +94,7 @@ public class ScheduleActivity extends Activity {
 										getApplicationContext(),
 										date.get(arg2) + " "
 												+ description.get(arg2)
-												+ " is deleted.", 3000).show();
+												+ " is deleted.", Toast.LENGTH_LONG).show();
 
 								dataBase.delete(
 										DatabaseHandler.TABLE3,

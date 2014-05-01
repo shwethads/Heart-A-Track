@@ -1,7 +1,6 @@
 package com.example.heart_a_track;
 
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,27 +9,28 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.os.Build;
 
 public class CheckRateActivity extends ActionBarActivity {
 	private static final int CAMERA_REQUEST = 1888; 
-	private ImageView iv;
+	private ImageView iv1;
 	private Button okBtn;
-
+	private String uname;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_check_rate);
 
-		iv = (ImageView) findViewById(R.id.imageView1);
+		Intent intent = getIntent();
+		uname = intent.getStringExtra("uname");
+		
+		iv1 = (ImageView) findViewById(R.id.imageView1);
+		
 		okBtn = (Button) findViewById(R.id.button1);
 		okBtn.setOnClickListener(new OnClickListener() {
 
@@ -53,17 +53,19 @@ public class CheckRateActivity extends ActionBarActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
 		if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {  
 			Bitmap photo = (Bitmap) data.getExtras().get("data"); 
-			iv.setImageBitmap(photo);
-
+			iv1.setImageBitmap(photo);
+			
+			
 			okBtn.setText("View Result");
 			okBtn.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					compareColor();
+					int result = getColor();
 					Intent intent = new Intent(CheckRateActivity.this, RateResultActivity.class);
-					intent.putExtra("Heart Rate", 0);
+					intent.putExtra("result", result);
+					intent.putExtra("uname", uname);
 					startActivity(intent);					
 				}
 			});
@@ -71,16 +73,21 @@ public class CheckRateActivity extends ActionBarActivity {
 
 	} 
 
-	protected void compareColor() {
-		final Bitmap bitmap = ((BitmapDrawable)iv.getDrawable()).getBitmap();
+	protected int getColor() {
+		final Bitmap bitmap = ((BitmapDrawable)iv1.getDrawable()).getBitmap();
 
 		int pixel = bitmap.getPixel(60,100);
 
 		int r = (pixel >> 16) & 0xFF;
 		int g = (pixel >> 8) & 0xFF;
 		int b = (pixel >> 0) & 0xFF;
+		
+		int res = 90;
+		
+		int redVal = 315-r;
 
-		System.out.println("------"+r+"-----------"+g+"--------"+b+"------------"+pixel);
+		System.out.println("------"+r+"-----------"+g+"--------"+b+"------------"+redVal);
+		return redVal;
 
 	}
 

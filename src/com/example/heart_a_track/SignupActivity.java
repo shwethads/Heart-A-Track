@@ -1,5 +1,6 @@
 package com.example.heart_a_track;
 
+import exception.MyException;
 import util.Util;
 import DBLayout.DatabaseHandler;
 import android.support.v7.app.ActionBarActivity;
@@ -36,24 +37,25 @@ public class SignupActivity extends ActionBarActivity {
 				String username = uname.getText().toString();
 				String pwd = pass.getText().toString();
 				
-				if(username.equalsIgnoreCase("") || pwd.equalsIgnoreCase("")) {
-					Toast.makeText(getApplicationContext(), "Please enter values", 
-							   Toast.LENGTH_LONG).show();
-				}
-				else {
-					if(util.checkUname(db, username)) {
-						Toast.makeText(getApplicationContext(), "User exists", 
-								   Toast.LENGTH_LONG).show();
+				try {
+					if(username.equalsIgnoreCase("") || pwd.equalsIgnoreCase("")) {
+						throw new MyException(getApplicationContext(), "Please enter values");
 					}
 					else {
-						db.addUser(username, pwd);
-						Toast.makeText(getApplicationContext(), "User added", 
-								   Toast.LENGTH_LONG).show();
-						
-						Intent intent = new Intent(SignupActivity.this, MainActivity.class);
-						startActivity(intent);
+						if(util.checkUname(db, username)) {
+							throw new MyException(getApplicationContext(), "User exists");
+						}
+						else {
+							db.addUser(username, pwd);
+							Toast.makeText(getApplicationContext(), "User added", 
+									   Toast.LENGTH_LONG).show();
+							
+							Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+							startActivity(intent);
+						}
 					}
-					
+				}catch (MyException e) {
+					e.printStackTrace();
 				}
 				
 			}

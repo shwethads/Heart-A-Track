@@ -1,9 +1,6 @@
 package com.example.heart_a_track;
 
-import java.io.InputStream;
-
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,14 +11,17 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.os.Build;
 
 public class HomeActivity extends ActionBarActivity {
-
+	private String uname;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+		
+		Intent intent = getIntent();
+		uname = intent.getStringExtra("uname");
 		
 		Button heartRateBtn = (Button) findViewById(R.id.button1);
 		Button scheduleBtn = (Button) findViewById(R.id.button2);
@@ -33,6 +33,7 @@ public class HomeActivity extends ActionBarActivity {
 			public void onClick(View v) {
 				// Open camera, capture pic and image analysis
 				Intent intent = new Intent(HomeActivity.this, CheckRateActivity.class);
+				intent.putExtra("uname", uname);
 				startActivity(intent);
 			}
 		});

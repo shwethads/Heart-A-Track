@@ -1,10 +1,10 @@
 package com.example.heart_a_track;
 
+import exception.MyException;
 import util.Util;
 import DBLayout.DatabaseHandler;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
-import android.text.method.LinkMovementMethod;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -56,24 +56,26 @@ public class MainActivity extends ActionBarActivity {
 		        String pass = pwd.getText().toString();
 		        System.out.println(uname);
 		        
-				// check if input values are empty
-				if(uname.equals("") || pass.equals("")) {
-					Toast.makeText(getApplicationContext(), "Please enter values", 
-							   Toast.LENGTH_LONG).show();
-				}
-				
-				
-				//Check if input values are correct
-				if(util.checkCredentials(db, uname, pass)){
-					//If input is correct
-					Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-					//set user identifier
-					startActivity(intent);
-				}
-				else {
-					Toast.makeText(getApplicationContext(), "Incorrect unsername/password", 
-							   Toast.LENGTH_LONG).show();
-				}			
+		        try {
+		        	// check if input values are empty
+					if(uname.equals("") || pass.equals("")) {
+						throw new MyException(getApplicationContext(), "Please enter values");
+					}					
+					
+					//Check if input values are correct
+					if(util.checkCredentials(db, uname, pass)){
+						Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+						intent.putExtra("uname", uname);
+						//set user identifier
+						startActivity(intent);
+					}
+					else {
+						throw new MyException(getApplicationContext(), "Incorrect unsername/password");
+					}		
+		        	
+		        }catch(MyException e) {
+		        	e.printStackTrace();
+		        }
 			}
 		});
 

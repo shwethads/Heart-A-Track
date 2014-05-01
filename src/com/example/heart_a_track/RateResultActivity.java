@@ -1,23 +1,43 @@
 package com.example.heart_a_track;
 
+import util.Util;
+import DBLayout.DatabaseHandler;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class RateResultActivity extends ActionBarActivity {
 
+	private int result;
+	private String uname;
+	
+	Util util = new Util();
+	DatabaseHandler db = new DatabaseHandler(this);
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_rate_result);
-
+		
+		TextView res = (TextView) findViewById(R.id.textView2);
+		
+		Intent intent = getIntent();
+		result = intent.getIntExtra("result", 0);
+		uname = intent.getStringExtra("uname");	
+		
+		res.setText("Heart Rate: "+result+"bps");
+		db.addHeartRate(uname, result);
+		Toast.makeText(getApplicationContext(), "Result added", 
+				   Toast.LENGTH_LONG).show();
+		
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();

@@ -1126,30 +1126,32 @@ containing a value of this type.
         public static final int activity_schedule=0x7f03001f;
         public static final int activity_signup=0x7f030020;
         public static final int fragment_check_rate=0x7f030021;
-        public static final int fragment_delete_schedule=0x7f030022;
-        public static final int fragment_forgot_pass=0x7f030023;
-        public static final int fragment_home=0x7f030024;
-        public static final int fragment_main=0x7f030025;
-        public static final int fragment_new_schedule=0x7f030026;
-        public static final int fragment_rate_result=0x7f030027;
-        public static final int fragment_rate_trend=0x7f030028;
-        public static final int fragment_schedule=0x7f030029;
-        public static final int fragment_signup=0x7f03002a;
-        public static final int listcell=0x7f03002b;
-        public static final int support_simple_spinner_dropdown_item=0x7f03002c;
+        public static final int fragment_check_rate2=0x7f030022;
+        public static final int fragment_delete_schedule=0x7f030023;
+        public static final int fragment_forgot_pass=0x7f030024;
+        public static final int fragment_home=0x7f030025;
+        public static final int fragment_main=0x7f030026;
+        public static final int fragment_new_schedule=0x7f030027;
+        public static final int fragment_rate_result=0x7f030028;
+        public static final int fragment_rate_trend=0x7f030029;
+        public static final int fragment_schedule=0x7f03002a;
+        public static final int fragment_signup=0x7f03002b;
+        public static final int listcell=0x7f03002c;
+        public static final int support_simple_spinner_dropdown_item=0x7f03002d;
     }
     public static final class menu {
         public static final int camera=0x7f0c0000;
         public static final int check_rate=0x7f0c0001;
-        public static final int delete_schedule=0x7f0c0002;
-        public static final int forgot_pass=0x7f0c0003;
-        public static final int fragment_new_schedule=0x7f0c0004;
-        public static final int fragment_rate_result=0x7f0c0005;
-        public static final int fragment_rate_trend=0x7f0c0006;
-        public static final int home=0x7f0c0007;
-        public static final int main=0x7f0c0008;
-        public static final int schedule=0x7f0c0009;
-        public static final int signup=0x7f0c000a;
+        public static final int check_rate2=0x7f0c0002;
+        public static final int delete_schedule=0x7f0c0003;
+        public static final int forgot_pass=0x7f0c0004;
+        public static final int fragment_new_schedule=0x7f0c0005;
+        public static final int fragment_rate_result=0x7f0c0006;
+        public static final int fragment_rate_trend=0x7f0c0007;
+        public static final int home=0x7f0c0008;
+        public static final int main=0x7f0c0009;
+        public static final int schedule=0x7f0c000a;
+        public static final int signup=0x7f0c000b;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1224,6 +1226,7 @@ containing a value of this type.
         public static final int signup_title=0x7f0a0017;
         public static final int title_activity_camera=0x7f0a0031;
         public static final int title_activity_check_rate=0x7f0a0033;
+        public static final int title_activity_check_rate2=0x7f0a0036;
         public static final int title_activity_delete_schedule=0x7f0a002d;
         public static final int title_activity_forgot_pass=0x7f0a001b;
         public static final int title_activity_home=0x7f0a001e;

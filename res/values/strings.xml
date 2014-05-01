@@ -42,5 +42,6 @@
     <string name="title_activity_check_rate">CheckRateActivity</string>
     <string name="rate_title">Heart Rate</string>
     <string name="rate_check_btn">Check heart rate</string>
+    <string name="title_activity_check_rate2">CheckRate2Activity</string>
 
 </resources>

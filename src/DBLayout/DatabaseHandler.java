@@ -37,15 +37,15 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		String CREATE_TABLE1 = ("CREATE TABLE IF NOT EXISTS "+TABLE1+"("+KEY_USERNAME+
 				" STRING PRIMARY KEY,"+KEY_PASSWORD+" STRING"+")");
 		String CREATE_TABLE2 = ("CREATE TABLE IF NOT EXISTS "+TABLE2+"("+KEY_USERNAME+
-				" STRING PRIMARY KEY,"+KEY_PASSWORD+" STRING,"+KEY_DATE+" DATE,"+
-				KEY_HEARTRATE+" DOUBLE"+")");
-		String CREATE_TABLE3 = "CREATE TABLE IF NOT EXISTS "+TABLE3+"("+KEY_ID+
-				" INTEGER PRIMARY KEY,"+KEY_DATE+" TEXT,"+
-				KEY_DESCRIPTION+" TEXT"+")";
+				" STRING,"+KEY_DATE+" DATETIME DEFAULT CURRENT_TIMESTAMP,"+ KEY_HEARTRATE+" NUMBER"+")");
+//		String CREATE_TABLE3 = "CREATE TABLE IF NOT EXISTS "+TABLE3+"("+KEY_ID+
+//				" INTEGER PRIMARY KEY,"+KEY_DATE+" TEXT,"+
+//				KEY_DESCRIPTION+" TEXT"+")";
 		
 		db.execSQL(CREATE_TABLE1);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE2);
 		db.execSQL(CREATE_TABLE2);		
-		db.execSQL(CREATE_TABLE3);
+		//db.execSQL(CREATE_TABLE3);
 	}
 
 	@Override
@@ -55,6 +55,21 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE2);
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE3);
 		onCreate(db);
+	}
+	
+	public String forgotPass(String username) {
+		String pass = new String(); 
+		
+		String query = "SELECT "+KEY_PASSWORD+" FROM "+TABLE1 +" WHERE USERNAME="+username;
+		SQLiteDatabase db = this.getWritableDatabase();
+	    Cursor cursor = db.rawQuery(query, null);
+	    
+	    if (cursor.moveToFirst()) {
+	        do {
+	        	pass = cursor.getString(0);
+	        }while(cursor.moveToNext());
+	    }
+	    return pass;
 	}
 	
 	public void addUser(String username, String password) {
@@ -68,13 +83,13 @@ public class DatabaseHandler extends SQLiteOpenHelper{
         db.insert(TABLE1, null, values);
 	}
 	
-	public void addHeartRate(String username, Date date, float heartRate) {
+	public void addHeartRate(String username, int heartRate) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		 
         ContentValues values = new ContentValues();
         
         values.put(KEY_USERNAME, username);
-        values.put(KEY_DATE, date.toString());
+        //values.put(KEY_DATE, date.toString());
         values.put(KEY_HEARTRATE, heartRate);
         
         db.insert(TABLE2, null, values);
