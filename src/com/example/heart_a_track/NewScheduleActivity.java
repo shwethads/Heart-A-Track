@@ -1,8 +1,8 @@
 package com.example.heart_a_track;
 
 import java.util.Calendar;
-
 import DBLayout.DatabaseHandler;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -21,6 +21,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
+@SuppressLint("InlinedApi")
 public class NewScheduleActivity extends ActionBarActivity implements OnClickListener{
 	
 	private String id, date, description;
@@ -169,6 +170,7 @@ public class NewScheduleActivity extends ActionBarActivity implements OnClickLis
  
 		btnChangeDate.setOnClickListener(new OnClickListener() {
  
+			@SuppressWarnings("deprecation")
 			@Override
 			public void onClick(View v) {
  
@@ -186,6 +188,7 @@ public class NewScheduleActivity extends ActionBarActivity implements OnClickLis
  
 		btnChangeTime.setOnClickListener(new OnClickListener() {
  
+			@SuppressWarnings("deprecation")
 			@Override
 			public void onClick(View v) {
  
