@@ -82,7 +82,13 @@ public class CheckRateActivity extends ActionBarActivity {
 		int g = (pixel >> 8) & 0xFF;
 		int b = (pixel >> 0) & 0xFF;
 		
+<<<<<<< HEAD
 		int redVal = 315-r;
+=======
+//		int res = 90;
+		
+		int redVal = 135-r/3;
+>>>>>>> FETCH_HEAD
 
 		System.out.println("------"+r+"-----------"+g+"--------"+b+"------------"+redVal);
 		return redVal;

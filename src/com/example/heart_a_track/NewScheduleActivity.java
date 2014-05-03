@@ -81,9 +81,6 @@ public class NewScheduleActivity extends ActionBarActivity implements OnClickLis
 		{
 			saveData();
 			
-			
-			//Trying to add a new alarm when a new schedule is created as the OK button clicked in NewScheduleActivity, seems not working, 
-			//please help to examin the code from line 90-106 as well as the AlarmManagerBroadcastReceiver file.
 			Calendar cal = Calendar.getInstance();     	 
 			// add the schedule time to the alarm
 			cal.set(Calendar.YEAR, year);		
@@ -96,6 +93,7 @@ public class NewScheduleActivity extends ActionBarActivity implements OnClickLis
 			Intent i = new Intent(AlarmClock.ACTION_SET_ALARM);
 		    i.putExtra(AlarmClock.EXTRA_HOUR, hour);
 		    i.putExtra(AlarmClock.EXTRA_MINUTES, minute);
+		    i.putExtra(AlarmClock.EXTRA_MESSAGE, description);
 		    startActivity(i);
 			
 		}

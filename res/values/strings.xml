@@ -22,7 +22,7 @@
     <string name="home_title">HOME</string>
     <string name="home_opn_check_rate">Check Heart Rate</string>
     <string name="home_opn_schedule">Exercise Schedule / Reminders</string>
-    <string name="home_opn_trend">Exercise Trend</string>
+    <string name="home_opn_trend">Heart Rate Trend</string>
     <string name="home_opn_account">View account details</string>
     <string name="title_activity_rate_result">RateResultActivity</string>
     <string name="result_title">RESULT</string>
